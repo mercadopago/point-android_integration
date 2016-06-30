@@ -16,10 +16,9 @@ public class Resultado extends AppCompatActivity {
     TextView amount;
     TextView ccType;
     TextView paymentId;
+    TextView error;
+    TextView errorDetail;
     ImageView image;
-    View layoutView;
-
-    // it could be
 
     public final static String RESULT_PAYMENT_ID = "paymentId";
 
@@ -31,11 +30,12 @@ public class Resultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
         image = (ImageView) findViewById(R.id.icon);
-        layoutView = findViewById(R.id.payment_id_lo);
         paymentId = (TextView) findViewById(R.id.payment_id);
         installments = (TextView) findViewById(R.id.installments);
         amount = (TextView) findViewById(R.id.amount);
         ccType = (TextView) findViewById(R.id.cc_type);
+        error = (TextView) findViewById(R.id.error);
+        errorDetail = (TextView) findViewById(R.id.error_detail);
 
 
 
@@ -48,6 +48,9 @@ public class Resultado extends AppCompatActivity {
             installments.setText(String.valueOf(data.getInt(BundleCodes.INSTALLMENTS)));
             amount.setText(String.valueOf(data.getDouble(BundleCodes.AMOUNT)));
             ccType.setText(data.getString(BundleCodes.CARD_TYPE));
+            error.setText(data.getString(BundleCodes.ERROR));
+            errorDetail.setText(data.getString(BundleCodes.ERROR_DETAIL));
+
         }
 
         Uri uri = launcherIntent.getData();
@@ -58,6 +61,8 @@ public class Resultado extends AppCompatActivity {
             installments.setText(uri.getQueryParameter(BundleCodes.INSTALLMENTS));
             amount.setText(uri.getQueryParameter(BundleCodes.AMOUNT));
             ccType.setText(uri.getQueryParameter(BundleCodes.CARD_TYPE));
+            error.setText(uri.getQueryParameter(BundleCodes.ERROR));
+            errorDetail.setText(uri.getQueryParameter(BundleCodes.ERROR_DETAIL));
         }
 
     }
@@ -69,8 +74,6 @@ public class Resultado extends AppCompatActivity {
             } else {
                 image.setImageDrawable(getResources().getDrawable(R.drawable.ok));
             }
-            // Show the payment id
-            layoutView.setVisibility(View.VISIBLE);
         }
         if (RESULT_STATUS_FAILED.equals(status)) {
             if (android.os.Build.VERSION.SDK_INT >= 22) {
@@ -78,9 +81,6 @@ public class Resultado extends AppCompatActivity {
             } else {
                 image.setImageDrawable(getResources().getDrawable(R.drawable.fail));
             }
-            layoutView.setVisibility(View.GONE);
-            // Hide the payment id
-            layoutView.setVisibility(View.VISIBLE);
         }
     }
 }
