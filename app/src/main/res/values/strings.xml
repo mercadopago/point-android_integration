@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Point Integration</string>
+    <string name="payment_Id">Payment Id</string>
+    <string name="intent_results">Results</string>
+    <string name="amount">Amount</string>
+    <string name="cc_type">CC Type</string>
+    <string name="installments">Installments</string>
+    <string-array name="cc_array">
+        <item>Credit</item>
+        <item>Debit</item>
+    </string-array>
+</resources>
