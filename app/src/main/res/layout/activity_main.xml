@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mercadopago.point.integration.basic.Main"
-    android:orientation="vertical">
+    tools:context="com.mercadopago.point.integration.Main">
 
 
     <android.support.design.widget.TextInputLayout
@@ -21,8 +21,8 @@
             android:id="@+id/reference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Reference"/>
+            android:hint="Reference"
+            android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -35,8 +35,8 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Amount"/>
+            android:hint="Amount"
+            android:inputType="numberDecimal" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -55,28 +55,33 @@
             android:id="@+id/installments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Installments"/>
+            android:hint="Installments"
+            android:inputType="number" />
 
     </android.support.design.widget.TextInputLayout>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/go_bundle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:src="@drawable/cc"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"/>
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/go_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:src="@drawable/www"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/go_bundle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cc"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/go_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/www"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp" />
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.mercadopago.point.integration.basic;
+package com.mercadopago.point.integration;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

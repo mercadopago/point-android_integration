@@ -8,7 +8,7 @@
     <string name="error_detail">Error detail</string>
     <string name="installments">Installments</string>
     <string-array name="cc_array">
-        <item>Credit</item>
-        <item>Debit</item>
+        <item>Credit card</item>
+        <item>Debit card</item>
     </string-array>
 </resources>
