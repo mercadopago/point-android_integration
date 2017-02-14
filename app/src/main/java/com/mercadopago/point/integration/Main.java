@@ -33,6 +33,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
+    FloatingActionButton go_operations_detail;
 
     //Variables that should be used all together.
     String appId = "YOUR_APP_ID";
@@ -45,6 +46,13 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         setContentView(R.layout.activity_main);
 
         setUpViews();
+
+        go_operations_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("point://operation_detail?payment_id=2583218915")));
+            }
+        });
 
         go_bundle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,6 +223,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         spinner = (Spinner) findViewById(R.id.debit_credit);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
         go_url = (FloatingActionButton) findViewById(R.id.go_url);
+        go_operations_detail = (FloatingActionButton) findViewById(R.id.go_operations_detail);
         //Set up the spinner...
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cc_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
