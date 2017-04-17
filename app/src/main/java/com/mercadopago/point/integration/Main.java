@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +31,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     EditText reference;
     EditText amount;
     EditText installments;
+    EditText sponsor;
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
@@ -84,6 +86,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the number of installments, for debit card must be 1.
                 bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(installments.getText().toString()));
 
+                //Sets the sponsor_id.
+                if (getSponsorId() != null) {
+                    bundle.putLong(BundleCodes.SPONSOR_ID, Long.valueOf(getSponsorId()));
+                }
+
                 //Before we can call the intent, we should check if this phone can handle the intent.
                 if (isAvailable(i)) {
                     //Start activity for result.
@@ -92,9 +99,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 } else {
                     //Send to google play.
                     try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.POINT_PACKAGE)));
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + Constants.POINT_PACKAGE)));
                     } catch (ActivityNotFoundException e) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.POINT_PACKAGE)));
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.POINT_PACKAGE)));
                     }
                 }
             }
@@ -133,6 +142,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the number of installments, for debit card must be 1.
                 builder.appendQueryParameter(BundleCodes.INSTALLMENTS, installments.getText().toString());
 
+                //Sets the sponsor_id.
+                if (getSponsorId() != null) {
+                    builder.appendQueryParameter(BundleCodes.SPONSOR_ID, getSponsorId());
+                }
+
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
                 builder.appendQueryParameter(BundleCodes.URL_SUCCESS, "demo://www.pointh.com");
                 builder.appendQueryParameter(BundleCodes.URL_FAIL, "demo://www.pointh.com");
@@ -149,14 +163,15 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 } else {
                     //Send to google play.
                     try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.POINT_PACKAGE)));
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + Constants.POINT_PACKAGE)));
                     } catch (ActivityNotFoundException e) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.POINT_PACKAGE)));
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.POINT_PACKAGE)));
                     }
                 }
             }
         });
-
     }
 
     public static Integer MSG_PRINT_RESULTS = 1;
@@ -194,9 +209,19 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     public boolean isAvailable(Intent intent) {
         final PackageManager mgr = getPackageManager();
         List<ResolveInfo> list =
-                mgr.queryIntentActivities(intent,
-                        PackageManager.MATCH_DEFAULT_ONLY);
+            mgr.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
         return list.size() > 0;
+    }
+
+    @Nullable
+    private String getSponsorId() {
+        final String sponsorString = sponsor.getText().toString();
+        if (sponsorString.isEmpty()) {
+            return null;
+        } else {
+            return sponsorString;
+        }
     }
 
     private String getCardTypeFromSpinner() {
@@ -212,13 +237,14 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         reference = (EditText) findViewById(R.id.reference);
         amount = (EditText) findViewById(R.id.amount);
         installments = (EditText) findViewById(R.id.installments);
+        sponsor = (EditText) findViewById(R.id.sponsor);
         spinner = (Spinner) findViewById(R.id.debit_credit);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
         go_url = (FloatingActionButton) findViewById(R.id.go_url);
         //Set up the spinner...
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cc_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter =
+            ArrayAdapter.createFromResource(this, R.array.cc_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
 }

@@ -40,9 +40,13 @@ public interface BundleCodes {
     String APP_SECRET = "client_secret";
     /**
      * Specify how much are you going to charge. This is NOT a percentage,
-     * should be a number smalled than the value in AMOUNT. Can be null
+     * should be a number smaller than the value in AMOUNT. Can be null
      */
     String APP_FEE = "application_fee";
+    /**
+     * Specify the sponsor_id to be used. If sent it can't be null
+     */
+    String SPONSOR_ID = "sponsor_id";
 
 
 

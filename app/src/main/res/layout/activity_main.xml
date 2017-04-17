@@ -27,6 +27,20 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/sponsorWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/sponsor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sponsor"
+            android:inputType="text" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/amountWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
