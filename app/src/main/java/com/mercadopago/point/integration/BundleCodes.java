@@ -47,8 +47,10 @@ public interface BundleCodes {
      * Specify the sponsor_id to be used. If sent it can't be null
      */
     String SPONSOR_ID = "sponsor_id";
-
-
+    /**
+     * Specify the notification_url to be used. If sent it can't be null
+     */
+    String NOTIFICATION_URL = "notification_url";
 
 
 

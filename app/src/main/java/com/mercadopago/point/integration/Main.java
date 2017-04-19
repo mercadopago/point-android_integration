@@ -52,7 +52,8 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         go_operations_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("point://operation_detail?payment_id=2583218915")));
+                startActivity(
+                    new Intent(Intent.ACTION_VIEW, Uri.parse("point://operation_detail?payment_id=2583218915")));
             }
         });
 
@@ -92,11 +93,18 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 bundle.putString(BundleCodes.CARD_TYPE, selectedCardType);
 
                 //Sets the number of installments, for debit card must be 1.
-                bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(installments.getText().toString()));
+                if (getInstallments() != null) {
+                    bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(getInstallments()));
+                }
 
                 //Sets the sponsor_id.
                 if (getSponsorId() != null) {
                     bundle.putLong(BundleCodes.SPONSOR_ID, Long.valueOf(getSponsorId()));
+                }
+
+                //Sets the notification_url.
+                if (getNotificationUrl() != null) {
+                    bundle.putString(BundleCodes.NOTIFICATION_URL, getNotificationUrl());
                 }
 
                 //Before we can call the intent, we should check if this phone can handle the intent.
@@ -148,11 +156,18 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 builder.appendQueryParameter(BundleCodes.CARD_TYPE, selectedCardType);
 
                 //Sets the number of installments, for debit card must be 1.
-                builder.appendQueryParameter(BundleCodes.INSTALLMENTS, installments.getText().toString());
+                if (getInstallments() != null) {
+                    builder.appendQueryParameter(BundleCodes.INSTALLMENTS, getInstallments());
+                }
 
                 //Sets the sponsor_id.
                 if (getSponsorId() != null) {
                     builder.appendQueryParameter(BundleCodes.SPONSOR_ID, getSponsorId());
+                }
+
+                //Sets the notification_url.
+                if (getNotificationUrl() != null) {
+                    builder.appendQueryParameter(BundleCodes.NOTIFICATION_URL, getNotificationUrl());
                 }
 
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
@@ -223,6 +238,16 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     }
 
     @Nullable
+    private String getInstallments() {
+        final String sponsorString = installments.getText().toString();
+        if (sponsorString.isEmpty()) {
+            return null;
+        } else {
+            return sponsorString;
+        }
+    }
+
+    @Nullable
     private String getSponsorId() {
         final String sponsorString = sponsor.getText().toString();
         if (sponsorString.isEmpty()) {
@@ -232,12 +257,25 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         }
     }
 
+    @Nullable
+    private String getNotificationUrl() {
+        return null;
+        //return "https://www.algo.com/url";
+    }
+
     private String getCardTypeFromSpinner() {
-        if (spinner.getSelectedItemPosition() == 0) {
-            return Constants.CREDIT_CARD;
-        } else {
-            return Constants.DEBIT_CARD;
+        String type = null;
+        switch (spinner.getSelectedItemPosition()) {
+            case 0:
+                type = Constants.CREDIT_CARD;
+                break;
+            case 1:
+                type = Constants.DEBIT_CARD;
+                break;
+            default:
+                break;
         }
+        return type;
     }
 
     @Override

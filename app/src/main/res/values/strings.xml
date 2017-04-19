@@ -10,5 +10,6 @@
     <string-array name="cc_array">
         <item>Credit card</item>
         <item>Debit card</item>
+        <item>NONE</item>
     </string-array>
 </resources>
