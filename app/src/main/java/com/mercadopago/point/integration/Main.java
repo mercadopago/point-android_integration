@@ -107,6 +107,16 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                     bundle.putString(BundleCodes.NOTIFICATION_URL, getNotificationUrl());
                 }
 
+                //Sets the external_reference.
+                if (getExternalReference() != null) {
+                    bundle.putString(BundleCodes.EXTERNAL_REFERENCE, getExternalReference());
+                }
+
+                //Sets the payer_email.
+                if (getPayerEmail() != null) {
+                    bundle.putString(BundleCodes.PAYER_EMAIL, getPayerEmail());
+                }
+
                 //Before we can call the intent, we should check if this phone can handle the intent.
                 if (isAvailable(i)) {
                     //Start activity for result.
@@ -168,6 +178,16 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the notification_url.
                 if (getNotificationUrl() != null) {
                     builder.appendQueryParameter(BundleCodes.NOTIFICATION_URL, getNotificationUrl());
+                }
+
+                //Sets the external_reference.
+                if (getExternalReference() != null) {
+                    builder.appendQueryParameter(BundleCodes.EXTERNAL_REFERENCE, getExternalReference());
+                }
+
+                //Sets the payer_email.
+                if (getPayerEmail() != null) {
+                    builder.appendQueryParameter(BundleCodes.PAYER_EMAIL, getPayerEmail());
                 }
 
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
@@ -261,6 +281,18 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     private String getNotificationUrl() {
         return null;
         //return "https://www.algo.com/url";
+    }
+
+    @Nullable
+    private String getExternalReference() {
+        return null;
+        //return "Un external reference de hasta 255 caracteres";
+    }
+
+    @Nullable
+    private String getPayerEmail() {
+        return null;
+        //return "unmail@gmail.com";
     }
 
     private String getCardTypeFromSpinner() {

@@ -52,7 +52,15 @@ public interface BundleCodes {
      */
     String NOTIFICATION_URL = "notification_url";
 
+    /**
+     * Specify the payer_email to be used. If sent it can't be null
+     */
+    String PAYER_EMAIL = "payer_email";
 
+    /**
+     * Specify the external_reference to be used. If sent it can't be null
+     */
+    String EXTERNAL_REFERENCE = "external_reference";
 
     //For the return of the operation.
     /**
