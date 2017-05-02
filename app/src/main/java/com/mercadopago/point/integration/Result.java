@@ -21,6 +21,7 @@ public class Result extends BaseActivity {
     TextView paymentId;
     TextView error;
     TextView errorDetail;
+    TextView truncCardHolder;
     ImageView image;
 
     @Override
@@ -44,6 +45,7 @@ public class Result extends BaseActivity {
             ccType.setText(data.getString(BundleCodes.CARD_TYPE));
             error.setText(data.getString(BundleCodes.ERROR));
             errorDetail.setText(data.getString(BundleCodes.ERROR_DETAIL));
+            truncCardHolder.setText(data.getString(BundleCodes.TRUNC_CARD_HOLDER));
         }
 
         Uri uri = launcherIntent.getData();
@@ -58,6 +60,7 @@ public class Result extends BaseActivity {
             ccType.setText(uri.getQueryParameter(BundleCodes.CARD_TYPE));
             error.setText(uri.getQueryParameter(BundleCodes.ERROR));
             errorDetail.setText(uri.getQueryParameter(BundleCodes.ERROR_DETAIL));
+            truncCardHolder.setText(uri.getQueryParameter(BundleCodes.TRUNC_CARD_HOLDER));
         }
 
     }
@@ -81,5 +84,6 @@ public class Result extends BaseActivity {
         ccType = (TextView) findViewById(R.id.cc_type);
         error = (TextView) findViewById(R.id.error);
         errorDetail = (TextView) findViewById(R.id.error_detail);
+        truncCardHolder = (TextView) findViewById(R.id.trunc_card_holder);
     }
 }

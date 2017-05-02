@@ -80,6 +80,10 @@ public interface BundleCodes {
      */
     String PAYMENT_ID = "payment_id";
     /**
+     * Specifies the trunc name of the person being charged
+     */
+    String TRUNC_CARD_HOLDER = "trunc_card_holder";
+    /**
      * This two only comes when the payment is rejected.
      */
     String ERROR = "error";
