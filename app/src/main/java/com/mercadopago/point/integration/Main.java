@@ -1,7 +1,10 @@
 package com.mercadopago.point.integration;
 
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -10,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,12 +46,18 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     String appSecret = "YOUR_APP_SECRET";
     double appFee = 1.0;
 
+    MyReceiver receiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setUpViews();
+
+        IntentFilter filter = new IntentFilter("com.mercadopago.merchant.PAYMENT_STATUS");
+        receiver = new MyReceiver();
+        registerReceiver(receiver, filter);
 
         go_operations_detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -325,5 +335,15 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
             ArrayAdapter.createFromResource(this, R.array.cc_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    public class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //You will receive the status -> PROCESSING when a payment is initiated...
+            Log.d("Payment status", intent.getStringExtra(BundleCodes.STATUS));
+        }
+
     }
 }

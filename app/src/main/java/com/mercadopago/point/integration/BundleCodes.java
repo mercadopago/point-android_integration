@@ -89,5 +89,11 @@ public interface BundleCodes {
     String ERROR = "error";
     String ERROR_DETAIL = "error_detail";
 
+
+    /**
+     * This is for the status receiver
+     */
+    String STATUS = "STATUS";
+
 }
 
