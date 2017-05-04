@@ -90,7 +90,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the transaction amount MUST BE PROVIDED.
                 bundle.putDouble(BundleCodes.AMOUNT, Double.valueOf(amount.getText().toString()));
 
-                //Sets the description for the payment.
+                //Sets the description for the payment MUST BE PROVIDED.
                 bundle.putString(BundleCodes.DESCRIPTION, reference.getText().toString());
 
                 //Sets whether the back button is allowed or not, the default value is true.
@@ -163,7 +163,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the transaction amount MUST BE PROVIDED.
                 builder.appendQueryParameter(BundleCodes.AMOUNT, amount.getText().toString());
 
-                //Sets the description for the payment.
+                //Sets the description for the payment MUST BE PROVIDED.
                 builder.appendQueryParameter(BundleCodes.DESCRIPTION, reference.getText().toString());
 
                 //Sets whether the back button is allowed or not, the default value is true.
