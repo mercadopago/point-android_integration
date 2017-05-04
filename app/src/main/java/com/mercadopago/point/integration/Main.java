@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import android.widget.Toast;
 import java.util.List;
 
 /**
@@ -86,6 +87,12 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //This should only be provided if BOTH app_id and app_secret are provided.
                 bundle.putDouble(BundleCodes.APP_FEE, appFee);
                 */
+
+                if (amount.getText().toString().trim().isEmpty() || reference.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 //Sets the transaction amount MUST BE PROVIDED.
                 bundle.putDouble(BundleCodes.AMOUNT, Double.valueOf(amount.getText().toString()));
@@ -159,6 +166,12 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //This should only be provided if BOTH app_id and app_secret are provided.
                 builder.appendQueryParameter(BundleCodes.APP_FEE, String.valueOf(appFee));
                 */
+
+                if (amount.getText().toString().trim().isEmpty() || reference.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 //Sets the transaction amount MUST BE PROVIDED.
                 builder.appendQueryParameter(BundleCodes.AMOUNT, amount.getText().toString());
@@ -344,6 +357,5 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
             //You will receive the status -> PROCESSING when a payment is initiated...
             Log.d("Payment status", intent.getStringExtra(BundleCodes.STATUS));
         }
-
     }
 }
