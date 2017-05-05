@@ -33,7 +33,9 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     public static final int PAYMENT_REQUEST = 1;
 
     //UI components.
-    EditText reference;
+    EditText description;
+    EditText externalReference;
+    EditText notificationURL;
     EditText amount;
     EditText installments;
     EditText sponsor;
@@ -88,7 +90,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 bundle.putDouble(BundleCodes.APP_FEE, appFee);
                 */
 
-                if (amount.getText().toString().trim().isEmpty() || reference.getText().toString().trim().isEmpty()) {
+                if (amount.getText().toString().trim().isEmpty() || description.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
                         Toast.LENGTH_LONG).show();
                     return;
@@ -98,7 +100,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 bundle.putDouble(BundleCodes.AMOUNT, Double.valueOf(amount.getText().toString()));
 
                 //Sets the description for the payment MUST BE PROVIDED.
-                bundle.putString(BundleCodes.DESCRIPTION, reference.getText().toString());
+                bundle.putString(BundleCodes.DESCRIPTION, description.getText().toString());
 
                 //Sets whether the back button is allowed or not, the default value is true.
                 bundle.putBoolean(BundleCodes.DISABLE_BACK_BUTTON, true);
@@ -167,7 +169,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 builder.appendQueryParameter(BundleCodes.APP_FEE, String.valueOf(appFee));
                 */
 
-                if (amount.getText().toString().trim().isEmpty() || reference.getText().toString().trim().isEmpty()) {
+                if (amount.getText().toString().trim().isEmpty() || description.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
                         Toast.LENGTH_LONG).show();
                     return;
@@ -177,7 +179,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 builder.appendQueryParameter(BundleCodes.AMOUNT, amount.getText().toString());
 
                 //Sets the description for the payment MUST BE PROVIDED.
-                builder.appendQueryParameter(BundleCodes.DESCRIPTION, reference.getText().toString());
+                builder.appendQueryParameter(BundleCodes.DESCRIPTION, description.getText().toString());
 
                 //Sets whether the back button is allowed or not, the default value is true.
                 builder.appendQueryParameter(BundleCodes.DISABLE_BACK_BUTTON, "true");
@@ -293,7 +295,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     @Nullable
     private String getSponsorId() {
         final String sponsorString = sponsor.getText().toString();
-        if (sponsorString.isEmpty()) {
+        if (sponsorString.trim().isEmpty()) {
             return null;
         } else {
             return sponsorString;
@@ -302,14 +304,22 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
     @Nullable
     private String getNotificationUrl() {
-        return null;
+        if (notificationURL.getText().toString().trim().isEmpty()) {
+            return null;
+        } else {
+            return notificationURL.getText().toString();
+        }
         //return "https://www.algo.com/url";
     }
 
     @Nullable
     private String getExternalReference() {
-        return null;
-        //return "Un external reference de hasta 255 caracteres";
+        if (externalReference.getText().toString().trim().isEmpty()) {
+            return null;
+        } else {
+            return externalReference.getText().toString();
+        }
+        //return "Un external description de hasta 255 caracteres";
     }
 
     @Nullable
@@ -335,7 +345,9 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
     @Override
     protected void setUpViews() {
-        reference = (EditText) findViewById(R.id.reference);
+        description = (EditText) findViewById(R.id.description);
+        externalReference = (EditText) findViewById(R.id.external_reference);
+        notificationURL = (EditText) findViewById(R.id.notification_url);
         amount = (EditText) findViewById(R.id.amount);
         installments = (EditText) findViewById(R.id.installments);
         sponsor = (EditText) findViewById(R.id.sponsor);
