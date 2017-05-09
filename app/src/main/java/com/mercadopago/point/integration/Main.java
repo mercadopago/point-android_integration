@@ -39,14 +39,14 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     EditText amount;
     EditText installments;
     EditText sponsor;
+    //Variables that should be used all together.
+    EditText appId;
+    EditText appSecret;
+    EditText appFee;
+    EditText payerEmail;
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
-
-    //Variables that should be used all together.
-    String appId = "YOUR_APP_ID";
-    String appSecret = "YOUR_APP_SECRET";
-    double appFee = 1.0;
 
     MyReceiver receiver;
 
@@ -73,13 +73,34 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Crate a new bundle to pass information about the payment.
                 Bundle bundle = new Bundle();
 
-                /*
-                //Sets the app_id and app_secret either BOTH or NONE must be provided.
-                bundle.putString(BundleCodes.APP_ID, appId);
-                bundle.putString(BundleCodes.APP_SECRET, appSecret);
-                //This should only be provided if BOTH app_id and app_secret are provided.
-                bundle.putDouble(BundleCodes.APP_FEE, appFee);
-                */
+                if (!appId.getText().toString().trim().isEmpty() && appSecret.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "If you send an app_id you must send an app_secret",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appSecret.getText().toString().trim().isEmpty() && appId.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "If you send an app_secret you must send an app_id",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appFee.getText().toString().trim().isEmpty() && appId.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(),
+                        "If you send an ap_fee you must send an app_id and an app_secret",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appId.getText().toString().trim().isEmpty() && !appSecret.getText().toString().trim().isEmpty()) {
+                    bundle.putString(BundleCodes.APP_ID, appId.getText().toString().trim());
+                    bundle.putString(BundleCodes.APP_SECRET, appSecret.getText().toString().trim());
+                }
+
+                if (!appFee.getText().toString().trim().isEmpty()) {
+                    //This should only be provided if BOTH app_id and app_secret are provided.
+                    bundle.putDouble(BundleCodes.APP_FEE, Double.valueOf(appFee.getText().toString().trim()));
+                }
 
                 if (amount.getText().toString().trim().isEmpty() || description.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
@@ -152,13 +173,35 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Get a new builder for an url call.
                 Uri.Builder builder = Uri.parse(Constants.LINK).buildUpon();
 
-                /*
-                //Sets the app_id and app_secret either BOTH or NONE must be provided.
-                builder.appendQueryParameter(BundleCodes.APP_ID, appId);
-                builder.appendQueryParameter(BundleCodes.APP_SECRET, appSecret);
-                //This should only be provided if BOTH app_id and app_secret are provided.
-                builder.appendQueryParameter(BundleCodes.APP_FEE, String.valueOf(appFee));
-                */
+                if (!appId.getText().toString().trim().isEmpty() && appSecret.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "If you send an app_id you must send an app_secret",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appSecret.getText().toString().trim().isEmpty() && appId.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "If you send an app_secret you must send an app_id",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appFee.getText().toString().trim().isEmpty() && appId.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getApplicationContext(),
+                        "If you send an ap_fee you must send an app_id and an app_secret",
+                        Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!appId.getText().toString().trim().isEmpty() && !appSecret.getText().toString().trim().isEmpty()) {
+                    builder.appendQueryParameter(BundleCodes.APP_ID, appId.getText().toString().trim());
+                    builder.appendQueryParameter(BundleCodes.APP_SECRET, appSecret.getText().toString().trim());
+                }
+
+                if (!appFee.getText().toString().trim().isEmpty()) {
+                    //This should only be provided if BOTH app_id and app_secret are provided.
+                    builder
+                        .appendQueryParameter(BundleCodes.APP_FEE, String.valueOf(appFee.getText().toString().trim()));
+                }
 
                 if (amount.getText().toString().trim().isEmpty() || description.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Both amount and description are mandatory",
@@ -315,8 +358,22 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
     @Nullable
     private String getPayerEmail() {
-        return null;
+        if (payerEmail.getText().toString().trim().isEmpty()) {
+            return null;
+        } else {
+            if (isValidEmail(payerEmail.getText().toString())) {
+                return payerEmail.getText().toString();
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid email, parameter not sent",
+                    Toast.LENGTH_LONG).show();
+                return null;
+            }
+        }
         //return "unmail@gmail.com";
+    }
+
+    private static boolean isValidEmail(final CharSequence target) {
+        return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     private String getCardTypeFromSpinner() {
@@ -343,7 +400,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         installments = (EditText) findViewById(R.id.installments);
         sponsor = (EditText) findViewById(R.id.sponsor);
         spinner = (Spinner) findViewById(R.id.debit_credit);
+        payerEmail = (EditText) findViewById(R.id.payer_email);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
+        appId = (EditText) findViewById(R.id.app_id);
+        appSecret = (EditText) findViewById(R.id.app_secret);
+        appFee = (EditText) findViewById(R.id.app_fee);
         go_url = (FloatingActionButton) findViewById(R.id.go_url);
         //Set up the spinner...
         ArrayAdapter<CharSequence> adapter =

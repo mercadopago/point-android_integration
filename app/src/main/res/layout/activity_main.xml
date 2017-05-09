@@ -17,6 +17,20 @@
         tools:context="com.mercadopago.point.integration.Main">
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/amountWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount (Mandatory)"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/usernameWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -58,20 +72,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/amountWrapper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Amount (Mandatory)"
-                android:inputType="numberDecimal"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
             android:id="@+id/notificationURLWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -102,6 +102,58 @@
                 android:layout_height="wrap_content"
                 android:hint="Installments"
                 android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/payer_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer email"
+                android:inputType="textEmailAddress"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/app_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Application id"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/app_secret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Application secret"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/app_fee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Application fee"
+                android:inputType="numberDecimal"/>
 
         </android.support.design.widget.TextInputLayout>
 

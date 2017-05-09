@@ -53,7 +53,7 @@ public interface BundleCodes {
     String NOTIFICATION_URL = "notification_url";
 
     /**
-     * Specify the payer_email to be used. If sent it can't be null
+     * Specifies the payer email to be pre loaded into the send email receipt view. If sent it can't be null
      */
     String PAYER_EMAIL = "payer_email";
 
