@@ -125,7 +125,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
                 //Sets the number of installments, for debit card must be 1.
                 if (getInstallments() != null) {
-                    bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(getInstallments()));
+                    bundle.putLong(BundleCodes.INSTALLMENTS, Long.valueOf(getInstallments()));
                 }
 
                 //Sets the sponsor_id.
