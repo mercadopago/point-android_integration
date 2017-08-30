@@ -123,6 +123,20 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/payer_identification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="9"
+                android:hint="Payer identification"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
                 android:id="@+id/app_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

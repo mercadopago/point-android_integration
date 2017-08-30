@@ -58,6 +58,12 @@ public interface BundleCodes {
     String PAYER_EMAIL = "payer_email";
 
     /**
+     * Specifies the payer identification to be pre loaded into the identification view. If sent it can't be null. This
+     * parameter is only needed for Argentina
+     */
+    String IDENTIFICATION = "identification";
+
+    /**
      * Specify the external_reference to be used. If sent it can't be null
      */
     String EXTERNAL_REFERENCE = "external_reference";
@@ -89,11 +95,9 @@ public interface BundleCodes {
     String ERROR = "error";
     String ERROR_DETAIL = "error_detail";
 
-
     /**
      * This is for the status receiver
      */
     String STATUS = "STATUS";
-
 }
 

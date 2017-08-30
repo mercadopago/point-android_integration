@@ -44,6 +44,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     EditText appSecret;
     EditText appFee;
     EditText payerEmail;
+    EditText payerIdentification;
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
@@ -148,6 +149,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                     bundle.putString(BundleCodes.PAYER_EMAIL, getPayerEmail());
                 }
 
+                //Sets the payer_identification.
+                if (getPayerIdentification() != null) {
+                    bundle.putLong(BundleCodes.IDENTIFICATION, getPayerIdentification());
+                }
+
                 //Before we can call the intent, we should check if this phone can handle the intent.
                 if (isAvailable(i)) {
                     //Start activity for result.
@@ -247,6 +253,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the payer_email.
                 if (getPayerEmail() != null) {
                     builder.appendQueryParameter(BundleCodes.PAYER_EMAIL, getPayerEmail());
+                }
+
+                //Sets the payer_identification.
+                if (getPayerIdentification() != null) {
+                    builder.appendQueryParameter(BundleCodes.IDENTIFICATION, getPayerIdentification().toString());
                 }
 
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
@@ -372,8 +383,32 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         //return "unmail@gmail.com";
     }
 
+    @Nullable
+    private Long getPayerIdentification() {
+        if (payerIdentification.getText().toString().trim().isEmpty()) {
+            return null;
+        } else {
+            try {
+                if (isValidIdentification(Long.valueOf(payerIdentification.getText().toString()))) {
+                    return Long.valueOf(payerIdentification.getText().toString());
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid identification, parameter not sent",
+                        Toast.LENGTH_LONG).show();
+                    return null;
+                }
+            } catch (final NumberFormatException ignored) {
+                return null;
+            }
+        }
+        //return 36363636L;
+    }
+
     private static boolean isValidEmail(final CharSequence target) {
         return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    private static boolean isValidIdentification(final Long target) {
+        return target != null && target >= 1000000 && target <= 999999999;
     }
 
     private String getCardTypeFromSpinner() {
@@ -401,6 +436,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         sponsor = (EditText) findViewById(R.id.sponsor);
         spinner = (Spinner) findViewById(R.id.debit_credit);
         payerEmail = (EditText) findViewById(R.id.payer_email);
+        payerIdentification = (EditText) findViewById(R.id.payer_identification);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
         appId = (EditText) findViewById(R.id.app_id);
         appSecret = (EditText) findViewById(R.id.app_secret);
