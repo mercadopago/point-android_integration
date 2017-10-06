@@ -58,6 +58,11 @@ public interface BundleCodes {
     String PAYER_EMAIL = "payer_email";
 
     /**
+     * Specifies the collector email to be used. If sent it can't be null
+     */
+    String COLLECTOR_ID = "collector_id";
+
+    /**
      * Specifies the payer identification to be pre loaded into the identification view. If sent it can't be null. This
      * parameter is only needed for Argentina
      */

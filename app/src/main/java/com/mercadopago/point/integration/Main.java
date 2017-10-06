@@ -45,6 +45,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     EditText appFee;
     EditText payerEmail;
     EditText payerIdentification;
+    EditText collectorId;
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
@@ -154,6 +155,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                     bundle.putLong(BundleCodes.IDENTIFICATION, getPayerIdentification());
                 }
 
+                //Sets the collector id to be used.
+                if (getCollector() != null){
+                    bundle.putLong(BundleCodes.COLLECTOR_ID, getCollector());
+                }
+
                 //Before we can call the intent, we should check if this phone can handle the intent.
                 if (isAvailable(i)) {
                     //Start activity for result.
@@ -258,6 +264,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the payer_identification.
                 if (getPayerIdentification() != null) {
                     builder.appendQueryParameter(BundleCodes.IDENTIFICATION, getPayerIdentification().toString());
+                }
+
+                //Sets the collector id to be used.
+                if (getCollector() != null){
+                    builder.appendQueryParameter(BundleCodes.COLLECTOR_ID, getCollector().toString());
                 }
 
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
@@ -368,6 +379,16 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     }
 
     @Nullable
+    private Long getCollector() {
+        if (collectorId.getText().toString().trim().isEmpty()) {
+            return null;
+        } else {
+            return Long.valueOf(collectorId.getText().toString());
+        }
+        //return "Un collector del tipo long";
+    }
+
+    @Nullable
     private String getPayerEmail() {
         if (payerEmail.getText().toString().trim().isEmpty()) {
             return null;
@@ -436,6 +457,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         sponsor = (EditText) findViewById(R.id.sponsor);
         spinner = (Spinner) findViewById(R.id.debit_credit);
         payerEmail = (EditText) findViewById(R.id.payer_email);
+        collectorId = (EditText) findViewById(R.id.collector_id);
         payerIdentification = (EditText) findViewById(R.id.payer_identification);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
         appId = (EditText) findViewById(R.id.app_id);
