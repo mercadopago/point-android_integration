@@ -6,14 +6,14 @@ package com.mercadopago.point.integration;
 
 public interface Constants {
 
-    String POINT_PACKAGE = "com.mercadopago.merchant";
+    String POINT_PACKAGE = "com.mercadopago.wallet";
 
     String RESULT_STATUS_OK = "OK";
     String RESULT_STATUS_FAILED = "FAILED";
-    String CREDIT_CARD = "credit_card";
-    String DEBIT_CARD = "debit_card";
+    String CREDIT_CARD = "CREDIT_CARD";
+    String DEBIT_CARD = "DEBIT_CARD";
     String ACTION = "com.mercadopago.PAYMENT_ACTION";
-    String LINK = "https://secure.mlstatic.com/org-img/point/app/index.html";
+    String LINK = "https://www.mercadopago.com/point/integrations";
 
     /**
      * @deprecated

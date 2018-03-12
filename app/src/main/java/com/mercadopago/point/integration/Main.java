@@ -156,7 +156,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 }
 
                 //Sets the collector id to be used.
-                if (getCollector() != null){
+                if (getCollector() != null) {
                     bundle.putLong(BundleCodes.COLLECTOR_ID, getCollector());
                 }
 
@@ -267,7 +267,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 }
 
                 //Sets the collector id to be used.
-                if (getCollector() != null){
+                if (getCollector() != null) {
                     builder.appendQueryParameter(BundleCodes.COLLECTOR_ID, getCollector().toString());
                 }
 
@@ -469,6 +469,14 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
             ArrayAdapter.createFromResource(this, R.array.cc_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
     }
 
     public class MyReceiver extends BroadcastReceiver {
