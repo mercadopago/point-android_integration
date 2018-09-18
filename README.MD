@@ -14,43 +14,55 @@ There are 2 kinds of integration Intent and Deep Linking.
 For the Intent integration you have to create a [implicit intent](http://developer.android.com/intl/es/guide/components/intents-filters.html#ExampleSend) and start it with the method [startActivityForResult]('http://developer.android.com/intl/es/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)') as follows:
 
 ```java
+Intent i = new Intent();
 
-     Intent i = new Intent();
-                    i.setAction("com.mercadopago.PAYMENT_ACTION");
-                    Bundle bundle = new Bundle();
-                    // AppId
-                    bundle.putString(BundleCodes.APP_ID, appId);
-                    // Secret
-                    bundle.putString(BundleCodes.APP_SECRET, appSecret);
-                    // App Fee
-                    bundle.putDouble(BundleCodes.APP_FEE, appFee);
-                    // Amount of transaction
-                    bundle.putDouble(BundleCodes.AMOUNT, Double.valueOf(amount.getText().toString()));
-                    // Description of transaction
-                    bundle.putString(BundleCodes.DESCRIPTION, reference.getText().toString());
-                    if (spinner.getSelectedItemPosition() == 0) {
-                        cc_selected = "credit_card";
-                    } else {
-                        cc_selected = "debit_card";
-                    }
-                    // Payment type of transaction ( credit_card | debit_card  )
-                    bundle.putString(BundleCodes.CARD_TYPE, cc_selected);
-                    // # of installments
-                    bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(installments.getText().toString()));
-                    // Before we can start the intent, we should check if this phone handle the intent?
-                    if (isAvailable(i)) {
-                        // start activity for result
-                        i.putExtras(bundle);
-                        startActivityForResult(i, PAYMENT_REQUEST);
-                    } else {
-                        // send to google play.
-                        try {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
-                        } catch (ActivityNotFoundException e) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
-                        }
-                    }
+i.setAction("com.mercadopago.PAYMENT_ACTION");
 
+Bundle bundle = new Bundle();
+
+// AppId
+bundle.putString(BundleCodes.APP_ID, appId);
+
+// Secret
+bundle.putString(BundleCodes.APP_SECRET, appSecret);
+
+// App Fee
+bundle.putDouble(BundleCodes.APP_FEE, appFee);
+
+// Amount of transaction
+bundle.putDouble(BundleCodes.AMOUNT, Double.valueOf(amount.getText().toString()));
+
+// Description of transaction
+bundle.putString(BundleCodes.DESCRIPTION, reference.getText().toString());
+
+if (spinner.getSelectedItemPosition() == 0) {
+    cc_selected = "credit_card";
+} else {
+    cc_selected = "debit_card";
+}
+
+// Payment type of transaction ( credit_card | debit_card  )
+bundle.putString(BundleCodes.CARD_TYPE, cc_selected);
+
+// # of installments
+bundle.putInt(BundleCodes.INSTALLMENTS, Integer.valueOf(installments.getText().toString()));
+
+// Kiosk Mode
+bundle.putBoolean(BundleCodes.IS_KIOSK, true);
+
+// Before we can start the intent, we should check if this phone handle the intent?
+if (isAvailable(i)) {
+    // start activity for result
+    i.putExtras(bundle);
+    startActivityForResult(i, PAYMENT_REQUEST);
+} else {
+    // send to google play.
+    try {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+    } catch (ActivityNotFoundException e) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+    }
+}
 ```
 
 And them when the payment is done, point will notify a intent as follows:
@@ -59,14 +71,13 @@ in the calling activity:
 
 ```java
 @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PAYMENT_REQUEST && data != null) {
-            Intent intent = new Intent(this, Resultado.class);
-            intent.putExtras(data.getExtras());
-            startActivity(intent);
-        }
-
-    }
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+   if (requestCode == PAYMENT_REQUEST && data != null) {
+       Intent intent = new Intent(this, Resultado.class);
+       intent.putExtras(data.getExtras());
+       startActivity(intent);
+   }
+}
 ```
 
 the result activity that shows the results:
