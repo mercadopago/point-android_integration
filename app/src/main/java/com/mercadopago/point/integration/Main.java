@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import android.widget.Switch;
 import android.widget.Toast;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
     EditText payerEmail;
     EditText payerIdentification;
     EditText collectorId;
+    Switch isKiosk;
     Spinner spinner;
     FloatingActionButton go_bundle;
     FloatingActionButton go_url;
@@ -160,6 +162,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                     bundle.putLong(BundleCodes.COLLECTOR_ID, getCollector());
                 }
 
+                //Sets is kiosk mode enabled.
+                if (isKiosk.isChecked()) {
+                    bundle.putBoolean(BundleCodes.IS_KIOSK, isKiosk.isChecked());
+                }
+
                 //Before we can call the intent, we should check if this phone can handle the intent.
                 if (isAvailable(i)) {
                     //Start activity for result.
@@ -269,6 +276,11 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 //Sets the collector id to be used.
                 if (getCollector() != null) {
                     builder.appendQueryParameter(BundleCodes.COLLECTOR_ID, getCollector().toString());
+                }
+
+                //Sets is kiosk mode enabled.
+                if (isKiosk.isChecked()){
+                    builder.appendQueryParameter(BundleCodes.IS_KIOSK, String.valueOf(isKiosk.isChecked()));
                 }
 
                 //Sets the callback url's THIS TWO MUST BE PROVIDED.
@@ -458,6 +470,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         spinner = (Spinner) findViewById(R.id.debit_credit);
         payerEmail = (EditText) findViewById(R.id.payer_email);
         collectorId = (EditText) findViewById(R.id.collector_id);
+        isKiosk = (Switch) findViewById(R.id.is_kiosk);
         payerIdentification = (EditText) findViewById(R.id.payer_identification);
         go_bundle = (FloatingActionButton) findViewById(R.id.go_bundle);
         appId = (EditText) findViewById(R.id.app_id);

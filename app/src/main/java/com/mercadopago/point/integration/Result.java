@@ -70,7 +70,7 @@ public class Result extends BaseActivity {
             image.setImageDrawable(ContextCompat.getDrawable(Result.this, R.drawable.ok));
         }
         //This could be an else, it is just to show the other result status available.
-        if (Constants.RESULT_STATUS_FAILED.equals(status)) {
+        if (Constants.RESULT_STATUS_FAILED.equals(status) || Constants.USER_CANCELLED_ERROR.equals(status)) {
             image.setImageDrawable(ContextCompat.getDrawable(Result.this, R.drawable.fail));
         }
     }

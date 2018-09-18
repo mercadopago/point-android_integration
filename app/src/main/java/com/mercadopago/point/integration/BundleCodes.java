@@ -63,6 +63,11 @@ public interface BundleCodes {
     String COLLECTOR_ID = "collector_id";
 
     /**
+     * Specify Kiosk mode. Which means the app will have less functionality to prevent access to the configuration.
+     */
+    String IS_KIOSK = "is_kiosk";
+
+    /**
      * Specifies the payer identification to be pre loaded into the identification view. If sent it can't be null. This
      * parameter is only needed for Argentina
      */
