@@ -1,8 +1,8 @@
 
-# MP Mobile Android Seller Integration
+# MercadoPago Integration
 
-The purpose of this app is to show the integration with  MP Mobile Android Seller.
-[![Download it or see some application screenshots directly from the Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png "Download it or see some application screenshots directly from the Google Play")](https://play.google.com/store/apps/details?id=com.mercadopago.merchant)
+The purpose of this app is to show the integration with MercadoPago.
+[![Download it or see some application screenshots directly from the Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png "Download it or see some application screenshots directly from the Google Play")](https://play.google.com/store/apps/details?id=com.mercadopago.wallet)
 
 ## How to:
 
