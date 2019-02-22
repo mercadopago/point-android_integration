@@ -193,6 +193,26 @@ These are the results you can get from Point appplication, ther are the same in 
 | error      | error reason      |    Only in "FAILED"  transactions             |
 | error_detail      | error details    |     Only in "FAILED"  transactions     |
 
+### Error detail response
+| Error result |    Description     |
+| -------------     | :------------         |  
+| USER_ABORTED | When the user goes back at the first payment screen |
+| NO_BT | Device has not bluethooth (only android) |
+| EXPIRED_CARD | Expired card entered/swiped. |
+| TRY_AGAIN | In some payment rejected cases |
+| WRONG_MCC | Invalid Merchant Category Code selected |
+| OWNERSHIP_ERROR | Point device belongs to another account |
+| LOW_BATTERY | Point device with critically low battery |
+| UNRECOGNIZED_DEVICE | Can't recognize the point (bluethooth) device |
+| VISA_BLACKLISTED | Visa blacklisted entered/swiped card |
+| USE_OTHER_CARD | Payment rejected, use other card requested |
+| INVALID_DATA_PROVIDED | Invalid card type selected (credit/debit) |
+| USER_CANCELLED_ERROR | User cancelled payment (on the point device) |
+| READER_DISABLED | Point device blocked |
+| CANCELLED_PAYMENT_ATTEMPT | Intent integration: cancelled attempt (only android) |
+| PAYMENT_REJECTED | Payment rejected |
+| INVALID_FINANCING_COST | Invalid installments selected |
+ 
 
 ## Repo usage
 *Do not clone or push to master branch.*
