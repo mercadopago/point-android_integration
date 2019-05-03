@@ -169,11 +169,12 @@ with the following URL :  https://secure.mlstatic.com/org-img/point/app/index.ht
 | amount        | yes           | The amount to be charged        |
 | description   | yes           | The description of the charge.  |
 | card_type     | no            | The card type to use, only credit_card or debit_card are valid values |
-| client_id     | no            | The client id to be used to log in. |
+| client_id     | no            | Specify your MercadoPago's Application id. Can be null |
 | client_secret  | no 1.         | The client secret of the app. |
 | application_fee | no 2.          | The fee charged by the app. |
 | success_url     | no          | The url to call when the payment has been done successfully, if none is provided we show the default point screen.  |
 | fail_url     | no          | The url to call when the payment has not been done successfully, if none is provided we show the default point screen. |
+| collector_id     | no            | Specifies the collector id to be used. If sent it can't be null |
 
 > 1. Its required if you provide a client_id
 > 2. If you provide application_fee , you must provide client_id & client_secret
