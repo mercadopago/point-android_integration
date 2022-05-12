@@ -1,6 +1,6 @@
 package com.mercadopago.point.integration;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by pgallazzi on 10/7/16.

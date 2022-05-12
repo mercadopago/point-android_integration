@@ -16,7 +16,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.mercadopago.point.integration.Main">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/amountWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -28,9 +28,9 @@
                 android:hint="Amount (Mandatory)"
                 android:inputType="numberDecimal"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -42,9 +42,9 @@
                 android:hint="Description (Mandatory)"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -55,9 +55,9 @@
                 android:hint="External reference"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sponsorWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -69,9 +69,9 @@
                 android:hint="Sponsor"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/notificationURLWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -83,7 +83,7 @@
                 android:hint="Notification URL"
                 android:inputType="textUri"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/debit_credit"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"/>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/installmentsWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -103,9 +103,9 @@
                 android:hint="Installments"
                 android:inputType="number"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -116,9 +116,9 @@
                 android:hint="Payer email"
                 android:inputType="textEmailAddress"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -129,7 +129,7 @@
                 android:hint="Collector"
                 android:inputType="number"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Switch
             android:id="@+id/is_kiosk"
@@ -141,7 +141,7 @@
             android:paddingRight="6dp"
             android:text="Kiosk"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -153,9 +153,9 @@
                 android:hint="Payer identification"
                 android:inputType="number"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -166,9 +166,9 @@
                 android:hint="Application id"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -179,9 +179,9 @@
                 android:hint="Application secret"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -192,7 +192,7 @@
                 android:hint="Application fee"
                 android:inputType="numberDecimal"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,7 +200,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <android.support.design.widget.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/go_bundle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
                 app:elevation="6dp"
                 app:pressedTranslationZ="12dp"/>
 
-            <android.support.design.widget.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/go_url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

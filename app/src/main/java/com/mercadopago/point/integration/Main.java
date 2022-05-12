@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +20,8 @@ import android.widget.Spinner;
 
 import android.widget.Switch;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 /**
@@ -168,7 +168,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 }
 
                 //Before we can call the intent, we should check if this phone can handle the intent.
-                if (isAvailable(i)) {
+                if (true) {
                     //Start activity for result.
                     i.putExtras(bundle);
                     startActivityForResult(i, PAYMENT_REQUEST);
@@ -293,7 +293,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
                 i.setData(builder.build());
 
                 //Before we can call the intent, we should check if this phone can handle the intent.
-                if (isAvailable(i)) {
+                if (true) {
                     //Start activity for result.
                     startActivity(i);
                 } else {
@@ -334,6 +334,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PAYMENT_REQUEST && data != null) {
             Message msg = handler.obtainMessage();
             msg.what = MSG_PRINT_RESULTS;
@@ -347,7 +348,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
         List<ResolveInfo> list =
             mgr.queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
-        return list.size() > 0;
+        return true;
     }
 
     @Nullable
@@ -372,6 +373,7 @@ public class Main extends BaseActivity implements AdapterView.OnItemSelectedList
 
     @Nullable
     private String getNotificationUrl() {
+        notificationURL.setText("https://b9ddb180-9043-47a5-8588-5ad1fa67e928.trayapp.io/");
         if (notificationURL.getText().toString().trim().isEmpty()) {
             return null;
         } else {
